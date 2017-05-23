@@ -9,7 +9,7 @@ public class Brackets {
 
     }
     public Brackets(int n) {
-        getNumberOfPossibleCombinations(n);
+        System.out.println("result :\n"+getNumberOfPossibleCombinations(n));
         generateBrackets(n,0,0,new char[n*2]);
     }
 
@@ -30,7 +30,6 @@ public class Brackets {
 
 
     public void generateBrackets(int openStock, int closeStock, int index, char[] arr) {
-        openStock=0;
         while (closeStock >= 0) {
             if (openStock > 0) {
                 arr[index] = '(';
