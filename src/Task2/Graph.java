@@ -33,7 +33,7 @@ public class Graph {
             for (Neighbour aCurrentNeighbour : currentNeighbour) {
                 int neighbourIndex = aCurrentNeighbour.getNeighbourCityId(nextCity);
 
-                // only if not visited
+                // only if City is not visited
                 if (!this.cities[neighbourIndex].isVisited()) {
                     int tentative = this.cities[nextCity].getFareBetweenCities()
                             + aCurrentNeighbour.getPrice();

@@ -56,7 +56,5 @@ public class Brackets {
             System.out.println("Not the correct number");
         }
 
-
-
     }
 }
