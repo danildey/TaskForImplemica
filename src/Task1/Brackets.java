@@ -22,7 +22,8 @@ public class Brackets {
             return 1;
         }
         for (int i = 0; i < n; i++) {
-            res += getNumberOfPossibleCombinations(i) * getNumberOfPossibleCombinations(n - i - 1);
+            res += getNumberOfPossibleCombinations(i)
+                    * getNumberOfPossibleCombinations(n - i - 1);
         }
         return res;
     }
@@ -46,7 +47,7 @@ public class Brackets {
     public static void main(String[] args) {
         System.out.println("Enter the number of the calculation : ");
         Scanner scan = new Scanner(System.in);
-        int input= Integer.valueOf(scan.nextInt());
+        int input= scan.nextInt();
 
         scan.close();
         if(input>0){

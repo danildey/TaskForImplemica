@@ -7,16 +7,16 @@ import java.util.ArrayList;
 public class City  implements Cloneable{
     private String cityName;
     private int id;
-    private boolean visited;
+    private boolean isVisited;
     private int FareBetweenCities = Integer.MAX_VALUE;
-    private ArrayList<Neighbour> neighbours = new ArrayList<Neighbour>();
+    private ArrayList<Neighbour> neighbours = new ArrayList<>();
 
 //    Deep clone.
     @Override
     public Object clone()throws CloneNotSupportedException{
         try {
             City clonedCity = (City) super.clone();
-            ArrayList<Neighbour> clonedNeighbours=new ArrayList<Neighbour>();
+            ArrayList<Neighbour> clonedNeighbours=new ArrayList<>();
             for (Neighbour n:neighbours) {
                 clonedNeighbours.add((Neighbour)n.clone());
             }
@@ -55,15 +55,15 @@ public class City  implements Cloneable{
         this.neighbours = neighbours;
     }
     public void addNewNeighbour(Neighbour n){
-            this.neighbours.add(n);
+        this.neighbours.add(n);
     }
 
     public boolean isVisited() {
-        return visited;
+        return isVisited;
     }
 
     public void setVisited(boolean visited) {
-        this.visited = visited;
+        this.isVisited = visited;
     }
 
     @Override
@@ -76,7 +76,6 @@ public class City  implements Cloneable{
     }
 
     public void setName(String cityName) {
-
         this.cityName=cityName;
     }
 

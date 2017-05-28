@@ -10,16 +10,13 @@ import java.util.*;
 public class TaskConfigurationLoader{
 
     private City[] cities =null;
-    private List<Integer[]> sourceDest = new ArrayList<>();
+    private List<Integer[]> sourceDestinationList = new ArrayList<>();
     private List<String> citiesNames =new ArrayList<>();
     private int numberOfCities;
     private int numberOfNeighbours;
 
-    public  void loadConfigurationFromFile(String  fileName) throws IllegalArgumentException        {
-
-
-        try(Scanner in = new Scanner(new FileReader(fileName)))
-            {
+    public  void loadConfigurationFromFile(String  fileName) throws IllegalArgumentException {
+        try(Scanner in = new Scanner(new FileReader(fileName))){
                 // First reads number of tests. If correct continue.
                 int numberOfTest =in.nextInt();
                 System.out.println(numberOfTest);
@@ -39,8 +36,7 @@ public class TaskConfigurationLoader{
              // Reads cities and their neighbours.
             for(int i = 0; i < numberOfCities; i++)
             {
-                City c = null;
-
+                City c;
                 String cityName = in.next();
                 System.out.println(cityName);
 
@@ -70,7 +66,7 @@ public class TaskConfigurationLoader{
                     String source = in.next(); // source
                     String destination = in.next(); // destination
                     System.out.println(source+" "+destination );
-                    setSourceDest(new Integer[]{
+                    setSourceDestinationList(new Integer[]{
                             citiesNames.indexOf(source),
                             citiesNames.indexOf(destination)
                     });
@@ -94,15 +90,18 @@ public class TaskConfigurationLoader{
     public List<String> getCitiesNames() {
         return citiesNames;
     }
-    public List<Integer[]> getSourceDest() {
-        return sourceDest;
+    public List<Integer[]> getSourceDestinationList() {
+        return sourceDestinationList;
     }
 
-    public void setSourceDest(Integer[] sourceDest) {
-        this.sourceDest.add(sourceDest);
+    public void setSourceDestinationList(Integer[] sourceDestination) {
+        this.sourceDestinationList.add(sourceDestination);
 
     }
     public City[] getCities(){
+       return copyOfCities();
+    }
+    private City[] copyOfCities(){
         City[] copy = new City[cities.length];
         for (int i = 0; i <cities.length ; i++)
             try {
