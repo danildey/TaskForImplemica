@@ -1,29 +1,30 @@
 package Task2;
 
 import java.util.ArrayList;
+
 /*
 * This Class is Node of Graph, with edges to another Nodes(Cities)
 */
-public class City  implements Cloneable{
+public class City implements Cloneable {
     private String cityName;
     private int id;
     private boolean isVisited;
     private int FareBetweenCities = Integer.MAX_VALUE;
     private ArrayList<Neighbour> neighbours = new ArrayList<>();
 
-//    Deep clone.
+    //    Deep clone.
     @Override
-    public Object clone()throws CloneNotSupportedException{
+    public Object clone() throws CloneNotSupportedException {
         try {
             City clonedCity = (City) super.clone();
-            ArrayList<Neighbour> clonedNeighbours=new ArrayList<>();
-            for (Neighbour n:neighbours) {
-                clonedNeighbours.add((Neighbour)n.clone());
+            ArrayList<Neighbour> clonedNeighbours = new ArrayList<>();
+            for (Neighbour n : neighbours) {
+                clonedNeighbours.add((Neighbour) n.clone());
             }
             clonedCity.setNeighbours(clonedNeighbours);
             return clonedCity;
 
-        }catch (CloneNotSupportedException e){
+        } catch (CloneNotSupportedException e) {
             e.printStackTrace();
             return null;
         }
@@ -33,6 +34,7 @@ public class City  implements Cloneable{
     public int getFareBetweenCities() {
         return FareBetweenCities;
     }
+
     public void setFareBetweenCities(int fareBetweenCities) {
         FareBetweenCities = fareBetweenCities;
     }
@@ -51,10 +53,12 @@ public class City  implements Cloneable{
     public ArrayList<Neighbour> getNeighbours() {
         return neighbours;
     }
+
     public void setNeighbours(ArrayList<Neighbour> neighbours) {
         this.neighbours = neighbours;
     }
-    public void addNewNeighbour(Neighbour n){
+
+    public void addNewNeighbour(Neighbour n) {
         this.neighbours.add(n);
     }
 
@@ -68,7 +72,7 @@ public class City  implements Cloneable{
 
     @Override
     public String toString() {
-        return  getName()+" id = "+getId();
+        return getName() + " id = " + getId();
     }
 
     public String getName() {
@@ -76,7 +80,7 @@ public class City  implements Cloneable{
     }
 
     public void setName(String cityName) {
-        this.cityName=cityName;
+        this.cityName = cityName;
     }
 
     public int getId() {
@@ -84,7 +88,7 @@ public class City  implements Cloneable{
     }
 
     public void setId(int id) {
-        if(id>10000)throw new IllegalArgumentException("Wrong id.");
+        if (id > 10000) throw new IllegalArgumentException("Wrong id.");
         this.id = id;
     }
 }

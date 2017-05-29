@@ -3,7 +3,7 @@ package Task3;
 import java.math.BigInteger;
 import static java.math.BigInteger.ONE;
 /**
- * Class is based on the balanced tree algorithm
+ * The factorial is calculated using the balanced tree algorithm
  */
 
 public class Factorial {
@@ -11,10 +11,12 @@ public class Factorial {
     private BigInteger[] cache = new BigInteger[MAX+1];
     private BigInteger N = BigInteger.valueOf(MAX+1);
     private final BigInteger TWO = ONE.add(ONE);
-    /**
-     * Default (internal) constructor constructs our cache.
-     */
+
     public Factorial() {
+        createCache();
+    }
+
+    public void createCache() {
         BigInteger b = ONE;
         cache[0] = b;
         cache[1] = b;
@@ -23,17 +25,15 @@ public class Factorial {
             cache[i] = b;
         }
     }
-    /**
-     * Task3.Factorial calculation method.
-     * The method  handle negative numbers, adjusts the cache size, and calculates the factorial.
-     */
+
     public BigInteger calc(int x) {
         if (x < 0) throw new IllegalArgumentException("negative x");
         if (x <= MAX) return cache[x];
         BigInteger M = BigInteger.valueOf(x);
         return cache[MAX].multiply(multiply_range(N, M));
     }
-    /**
+
+    /*
      * This method divides the numbers into multiplication ranges by the tree principle.
      */
     public BigInteger multiply_range(BigInteger n, BigInteger m) {
@@ -43,26 +43,17 @@ public class Factorial {
         BigInteger next = half.add(ONE);
         return multiply_range(n, half).multiply(multiply_range(next, m));
     }
-    /**
-     * Calculates sum of the digits in the number.
-     * */
-    public int sum(BigInteger factorial){
+
+    public int sumOfTheDigitsInTheNumber(BigInteger factorial) {
         BigInteger sum = BigInteger.valueOf(0);
         while (!factorial.equals(BigInteger.ZERO)) {
             sum = sum.add(factorial.mod(BigInteger.valueOf(10)));
             factorial = factorial.divide(BigInteger.valueOf(10));
-//                System.out.println( ""+ factorial);
         }
         return sum.intValue();
     }
     public static void main(String[] args) {
-        long start = System.currentTimeMillis();
-
         Factorial factorial = new Factorial();
-
-        System.out.println(factorial.sum(factorial.calc(100)));
-
-//        System.out.println(System.currentTimeMillis()-start + " ms");
-
+        System.out.println(factorial.sumOfTheDigitsInTheNumber(factorial.calc(100)));
     }
 }
