@@ -26,17 +26,17 @@ public class Graph {
         int nextCity = fromCityId;
 
         // visit every cities
-        for (City city : this.cities) {
+        for (int i = 0; i < this.cities.length; i++) {
             // loop around the Neighbours of current city
             ArrayList<Neighbour> currentNeighbour = this.cities[nextCity].getNeighbours();
 
-            for (Neighbour aCurrentNeighbour : currentNeighbour) {
-                int neighbourIndex = aCurrentNeighbour.getNeighbourCityId(nextCity);
+            for (int joinedNeighbour = 0; joinedNeighbour < currentNeighbour.size(); joinedNeighbour++) {
+                int neighbourIndex = currentNeighbour.get(joinedNeighbour).getNeighbourCityId(nextCity);
 
-                // only if City is not visited
+                // only if not visited
                 if (!this.cities[neighbourIndex].isVisited()) {
                     int tentative = this.cities[nextCity].getFareBetweenCities()
-                            + aCurrentNeighbour.getPrice();
+                            + currentNeighbour.get(joinedNeighbour).getPrice();
 
                     if (tentative < cities[neighbourIndex].getFareBetweenCities()) {
                         cities[neighbourIndex].setFareBetweenCities(tentative);
