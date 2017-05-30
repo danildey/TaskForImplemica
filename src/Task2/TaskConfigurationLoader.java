@@ -16,19 +16,19 @@ public class TaskConfigurationLoader {
     private int numberOfTest;
     private int numberOfNeighbours;
 
-    public void loadConfigurationFromFile(String fileName) throws IllegalArgumentException {
+    public void loadConfigurationFromFile(String fileName) throws ConfigurationException {
         try (Scanner in = new Scanner(new FileReader(fileName))) {
             // First reads number of tests. If correct continue.
             numberOfTest = in.nextInt();
             System.out.println(numberOfTest);
             if (numberOfTest > 10 || numberOfTest <= 0)
-                throw new IllegalArgumentException("Incorrect size of tests.");
+                throw new ConfigurationException("Incorrect size of tests.");
 
             // Reads number of cities.
             numberOfCities = in.nextInt();
             System.out.println(numberOfCities);
             if (numberOfCities > 10000 || numberOfCities < 0)
-                throw new IllegalArgumentException("Incorrect size of cities.");
+                throw new ConfigurationException("Incorrect size of cities.");
 
             cities = new City[numberOfCities];
 
@@ -40,7 +40,7 @@ public class TaskConfigurationLoader {
                 System.out.println(cityName);
 
                 if (cityName.length() > 10 || cityName.length() < 0)
-                    throw new IllegalArgumentException("Incorrect size of cities.");
+                    throw new ConfigurationException("Incorrect size of cities.");
                 citiesNames.add(cityName);
 
                 numberOfNeighbours = in.nextInt();
@@ -86,11 +86,19 @@ public class TaskConfigurationLoader {
     }
 
     public List<String> getCitiesNames() {
+        if (citiesNames.isEmpty()) {
+            return Collections.emptyList();
+        } else {
         return citiesNames;
+        }
     }
 
     public List<Integer[]> getSourceDestinationList() {
+        if (sourceDestinationList.isEmpty()) {
+            return Collections.emptyList();
+        } else {
         return sourceDestinationList;
+        }
     }
 
     public void setSourceDestinationList(Integer[] sourceDestination) {

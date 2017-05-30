@@ -1,6 +1,8 @@
 package Task2;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /*
 * This Class is Node of Graph, with edges to another Nodes(Cities)
@@ -10,7 +12,7 @@ public class City implements Cloneable {
     private int id;
     private boolean isVisited;
     private int FareBetweenCities = Integer.MAX_VALUE;
-    private ArrayList<Neighbour> neighbours = new ArrayList<>();
+    private List<Neighbour> neighbours = new ArrayList<>();
 
     //    Deep clone.
     @Override
@@ -50,8 +52,12 @@ public class City implements Cloneable {
         this.neighbours = neighbours;
     }
 
-    public ArrayList<Neighbour> getNeighbours() {
-        return neighbours;
+    public List<Neighbour> getNeighbours() {
+        if (neighbours.isEmpty()) {
+            return Collections.emptyList();
+        } else {
+            return neighbours;
+        }
     }
 
     public void setNeighbours(ArrayList<Neighbour> neighbours) {

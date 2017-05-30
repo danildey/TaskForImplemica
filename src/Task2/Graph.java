@@ -1,6 +1,6 @@
 package Task2;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /*
  * Class realization of Dijkstra algorithm.
@@ -30,7 +30,7 @@ public class Graph {
         // visit every cities
         for (City city : this.cities) {
             // loop around the Neighbours of current city
-            ArrayList<Neighbour> currentNeighbour = this.cities[nextCity].getNeighbours();
+            List<Neighbour> currentNeighbour = this.cities[nextCity].getNeighbours();
 
             for (Neighbour neighbour : currentNeighbour) {
                 int neighbourIndex = neighbour.getNeighbourCityId(nextCity);
