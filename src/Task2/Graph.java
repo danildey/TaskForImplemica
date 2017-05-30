@@ -14,12 +14,13 @@ public class Graph {
 
     public Graph(TaskConfigurationLoader loader) {
         this.taskLoader = loader;
-        cities = loader.getCities();
+        this.cities = loader.getCities();
         for (Integer[] c : loader.getSourceDestinationList()) {
             calculateTheCheapestWay(c[0], c[1]);
         }
 
     }
+
 
     public void calculateTheCheapestWay(int fromCityId, int toCityId) {
 
@@ -35,7 +36,6 @@ public class Graph {
             for (Neighbour neighbour : currentNeighbour) {
                 int neighbourIndex = neighbour.getNeighbourCityId(nextCity);
 
-                // only if not visited
                 if (!this.cities[neighbourIndex].isVisited()) {
                     int tentative = this.cities[nextCity].getFareBetweenCities()
                             + neighbour.getPrice();
@@ -77,11 +77,9 @@ public class Graph {
         String output = "" + cities[to].getFareBetweenCities();
         System.out.println(output);
     }
-
     public void reloadCities() {
         this.cities = taskLoader.getCities();
     }
-
 }
 
 
